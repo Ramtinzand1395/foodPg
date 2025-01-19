@@ -36,7 +36,7 @@ const Banner = () => {
               dolores possimus similique nihil ut aspernatur nisi nostrum beatae
               expedita unde doloribus facilis.
             </motion.p>
-            <motion.button variants={SlideUp(1.6)} initial="init" whileInView="animate" className="btn-primary">Order Now</motion.button>
+            <motion.button variants={SlideUp(1.6)} initial="init" whileInView="animate" className="btn-primary ">Order Now</motion.button>
           </div>
         </div>
       </div>

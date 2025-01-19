@@ -38,9 +38,9 @@ const HotDesert = () => {
           Hot Desert
         </motion.h4>
         {/* Grid Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 overflow-hidden cursor-pointer">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6  cursor-pointer">
           {hotDesertData.map((data) => (
-            <motion.div variants={SlideUp(data.delay)} initial="init" whileInView="animate" key={data.id} className="group  bg-white/50 shadow-md p-3 flex items-center gap-3">
+            <motion.div variants={SlideUp(data.delay)} initial="init" whileInView="animate" key={data.id} className="group  bg-white/50 shadow-lg p-3 flex items-center gap-3">
               <img
                 src={data.img}
                 className="w-24 rounded-full img-shadow group-hover:scale-125 transition-all duration-700 group-hover:rotate-[50deg]"
