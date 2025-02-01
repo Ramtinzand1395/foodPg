@@ -1,85 +1,125 @@
 import React from "react";
-import FoodPng from "../../assets/food/food.png";
-import Spone from "../../assets/food/spoon.png";
-import Bannan from "../../assets/food/banana2.png";
-import Leaf from "../../assets/food/leaf.png";
-import { IoCartOutline } from "react-icons/io5";
+import Image1 from "../../assets/hero/women.png";
+import Image2 from "../../assets/hero/shopping.png";
+import Image3 from "../../assets/hero/sale.png";
+import Slider from "react-slick";
 import { motion } from "framer-motion";
-
-export const SlideUp = (delay) => {
+const ImageList = [
+  {
+    id: 1,
+    img: Image1,
+    title: "Upto 50% off on all Men's Wear",
+    description:
+      "lorem His Life will forever be Changed dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    id: 2,
+    img: Image2,
+    title: "30% off on all Women's Wear",
+    description:
+      "Who's there lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    id: 3,
+    img: Image3,
+    title: "70% off on all Products Sale",
+    description:
+      "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+];
+const animatePragraf = (delay) => {
   return {
-    init: {
-      y: "100%",
+    hidden: {
+      y: "80%",
       opacity: 0,
     },
-    animate: {
+    show: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.6,
         delay: delay,
+        duration: 0.8,
       },
     },
   };
 };
-const Hero = () => {
+
+const Hero = ({ handleOrderPopup }) => {
+  var settings = {
+    dots: false,
+    arrows: false,
+    infinite: true,
+    speed: 600,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 6000,
+    cssEase: "ease-in-out",
+    pauseOnHover: true,
+    pauseOnFocus: true,
+  };
+
   return (
-    <main>
-      <div className="container min-h-[600px] flex justify-center z-10 relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 place-items-center justify-between">
-          {/* text content here*/}
-          <div className="space-y-3 mt-14 text-center md:text-left md:mt-0">
-            <motion.h2
-              variants={SlideUp(0.5)}
-              initial="init"
-              whileInView="animate"
-              className="relative text-5xl lg:text-7xl xl:text-8xl font-bold uppercase text-outline text-transparent"
-            >
-              yummy
-              <img
-                src={Leaf}
-                className="absolute w-[50px] top-0 right-0 md:right-[100px]"
-                alt=""
-              />
-            </motion.h2>
-            <motion.h3 variants={SlideUp(1)}
-              initial="init"
-              whileInView="animate" className="relative text-5xl lg:text-7xl xl:text-8xl font-bold uppercase">
-              breakefast
-            </motion.h3>
-            <motion.p variants={SlideUp(1.5)}
-              initial="init"
-              whileInView="animate" className="text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa,
-              totam sint optio at omnis laborum obcaecati nemo maxime quo
-              aperiam velit minima exercitationem ad adipisci corporis placeat
-              dolor quam? Officiis.
-            </motion.p>
-            <motion.button variants={SlideUp(2)}
-              initial="init"
-              whileInView="animate" className="btn-primary  flex items-center gap-4 !mt-10">
-              <IoCartOutline /> Order Now
-            </motion.button>
-          </div>
-          {/* images here */}
-          <div className="relative">
-            <motion.img initial={{opacity:0 , rotate:20 , x:200 , y:100}} whileInView={{opacity:1,rotate:0 , x:0 , y:0}} transition={{duration:0.8}} src={FoodPng} className="w-[450px] img-shadow" alt="" />
-            <motion.img initial={{opacity:0 , rotate:120 , x:200 , y:100}} whileInView={{opacity:1,rotate:75 , x:0 , y:0}} transition={{duration:0.8}}
-              src={Spone}
-              className="w-[350px] absolute bottom-[-120px] -left-16  img-shadow"
-              alt=""
-            />
-            <motion.img initial={{opacity:0 , rotate:20 , x:200 , y:100}} whileInView={{opacity:1,rotate:0 , x:0 , y:0}} transition={{duration:0.8}}
-              src={Bannan}
-              className="w-[400px] absolute top-[-30px] right-[-130px] md:right-[-160px]  img-shadow"
-              alt=""
-            />
-          </div>
-        </div>
+    <div className="relative overflow-hidden min-h-[550px] sm:min-h-[650px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200 ">
+      {/* background pattern */}
+      <div className="h-[700px] w-[700px] bg-primary/40 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z[8]"></div>
+      {/* hero section */}
+      <div className="container pb-8 sm:pb-0">
+        <Slider {...settings}>
+          {ImageList.map((data) => (
+            <div key={data.id}>
+              <div className="grid grid-cols-1 sm:grid-cols-2">
+                {/* text content section */}
+                <div className="flex flex-col justify-center gap-4 pt-12 sm:pt-0 text-center sm:text-left order-2 sm:order-1 relative z-10">
+                  <motion.h1
+                    className="text-5xl sm:text-6xl lg:text-7xl font-bold"
+                    variants={animatePragraf(0.4)}
+                    initial="hidden"
+                    whileInView="show"
+                  >
+                    {data.title}
+                  </motion.h1>
+                  <motion.p
+                    className="text-sm"
+                    variants={animatePragraf(0.8)}
+                    initial="hidden"
+                    whileInView="show"
+                  >
+                    {data.description}
+                  </motion.p>
+                  <div
+                  >
+                    <motion.button
+                      onClick={handleOrderPopup}
+                      className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 text-white py-2 px-4 rounded-full"
+                      variants={animatePragraf(1.2)}
+                      initial="hidden"
+                      whileInView="show"
+                    >
+                      Order Now
+                    </motion.button>
+                  </div>
+                </div>
+                {/* image section */}
+                <div className="order-1 sm:order-2">
+                  <div
+                    className="relative z-10"
+                  >
+                    <motion.img
+                      initial={{ opacity: 0, scale:0 }}
+                      whileInView={{ opacity: 1,scale:1 }}
+                      transition={{ duration: 0.8 ,delay:0.4 }}
+                      src={data.img}
+                      alt=""
+                      className="w-[300px] h-[300px] sm:h-[450px] sm:w-[450px] sm:scale-105 lg:scale-120 object-contain mx-auto"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Slider>
       </div>
-      {/* yellow bg */}
-      <motion.div initial={{opacity:0 , rotate:60 , x:200 , y:100}} whileInView={{opacity:1,rotate:45 , x:0 , y:0}} transition={{duration:0.8}} className="w-[2500px] h-[2500px] bg-lightYellow absolute top-[-30%] left-[70%] z-0 "></motion.div>
-    </main>
+    </div>
   );
 };
 

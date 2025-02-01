@@ -1,46 +1,121 @@
 import React from "react";
-import food3 from "../../assets/food/banner.png";
+import BannerImg from "../../assets/women/women2.jpg";
+import { GrSecure } from "react-icons/gr";
+import { IoFastFood } from "react-icons/io5";
+import { GiFoodTruck } from "react-icons/gi";
 import { motion } from "framer-motion";
-import { SlideUp } from "../hero/Hero";
+
+const textVariants = (delay) => {
+  return {
+    show: {
+      opacity: 1,
+      y: "0",
+      transition: {
+        delay: delay,
+        duration: 0.8,
+      },
+    },
+    hide: {
+      opacity: 0,
+      y: "-100%",
+    },
+  };
+};
+const ImgVariants = (delay) => {
+  return {
+    show: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delay: delay,
+        duration: 0.8,
+      },
+    },
+    hide: {
+      opacity: 0,
+      scale: 0.6,
+    },
+  };
+};
 const Banner = () => {
   return (
-    <section>
-      <div className="container py-24 overflow-hidden">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-14 place-items-center ">
-          {/* Image Section */}
-          <div className="relative ">
-            <motion.img
-              initial={{ opacity: 0, x: -100, y: 100 }}
-              whileInView={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              whileHover={{x: 50, y: -50,rotate:15 , scale:1.1}}
-              src={food3}
+    <div className="min-h-[550px] flex justify-center items-center py-12 sm:py-0">
+      <div className="container">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+          {/* image section */}
+          <motion.div
+            variants={ImgVariants(0.4)}
+            initial="hide"
+            whileInView="show"
+          >
+            <img
+              src={BannerImg}
               alt=""
-              className="relative z-10 w-full lg:max-w-[350px] img-shadow "
+              className="max-w-[400px] h-[350px] w-full mx-auto drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)] object-cover"
             />
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="bg-lightYellow rounded-full h-[320px] w-[320px] top-[50%] transform translate-y-[-50%]  translate-x-[50%] right-[50%] absolute "
-            ></motion.div>
-          </div>
-          {/* Text content section */}
-          <div className="space-y-5 lg:max-w-[400px]">
-            <motion.h2 variants={SlideUp(1)} initial="init" whileInView="animate" className="text-6xl uppercase font-semibold font-league">
-              the best yummy food in town
-            </motion.h2>
-            <motion.p variants={SlideUp(1.3)} initial="init" whileInView="animate">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
-              dicta, atque, quod perspiciatis obcaecati necessitatibus qui nulla
-              dolores possimus similique nihil ut aspernatur nisi nostrum beatae
-              expedita unde doloribus facilis.
+          </motion.div>
+
+          {/* text details section */}
+          <div className="flex flex-col justify-center gap-6 sm:pt-0">
+            <motion.h1
+              variants={textVariants(0.4)}
+              initial="hide"
+              whileInView="show"
+              className="text-3xl sm:text-4xl font-bold"
+            >
+              Winter Sale upto 50% Off
+            </motion.h1>
+            <motion.p
+              variants={textVariants(0.6)}
+              initial="hide"
+              whileInView="show"
+              className="text-sm text-gray-500 tracking-wide leading-5"
+            >
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque
+              reiciendis inventore iste ratione ex alias quis magni at optio
             </motion.p>
-            <motion.button variants={SlideUp(1.6)} initial="init" whileInView="animate" className="btn-primary ">Order Now</motion.button>
+            <div className="flex flex-col gap-4">
+              <motion.div
+                variants={textVariants(0.8)}
+                initial="hide"
+                whileInView="show"
+                className="flex items-center gap-4"
+              >
+                <GrSecure className="text-4xl h-12 w-12 shadow-sm p-4 rounded-full bg-violet-100 dark:bg-violet-400" />
+                <p>Quality Products</p>
+              </motion.div>
+              <motion.div
+                variants={textVariants(1)}
+                initial="hide"
+                whileInView="show"
+                className="flex items-center gap-4"
+              >
+                <IoFastFood className="text-4xl h-12 w-12 shadow-sm p-4 rounded-full bg-orange-100 dark:bg-orange-400" />
+                <p>Fast Delivery</p>
+              </motion.div>
+              <motion.div
+                variants={textVariants(1.1)}
+                initial="hide"
+                whileInView="show"
+                className="flex items-center gap-4"
+              >
+                <GiFoodTruck className="text-4xl h-12 w-12 shadow-sm p-4 rounded-full bg-green-100 dark:bg-green-400" />
+                <p>Easy Payment method</p>
+              </motion.div>
+              <motion.div
+                variants={textVariants(1.2)}
+                initial="hide"
+                whileInView="show"
+                className="flex items-center gap-4"
+              >
+                <GiFoodTruck className="text-4xl h-12 w-12 shadow-sm p-4 rounded-full bg-yellow-100 dark:bg-yellow-400" />
+                <p>Get Offers</p>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

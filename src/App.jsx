@@ -1,24 +1,34 @@
-import React from "react";
-import Navbar from "./components/navbar/Navbar";
-import Hero from "./components/hero/Hero";
-import HotDesert from "./components/hotDesert/HotDesert";
-import Banner from "./components/banner/Banner";
-import PopulateRecepi from "./components/populatedReeoi/PopulateRecepi";
-import Testemonial from "./components/testemonial/Testemonial";
-import Footer from "./components/footer/Footer";
+import React, { useState } from "react";
+import Navbar from "./components/Navbar/Navbar.jsx";
+import Hero from "./components/Hero/Hero.jsx";
+import Products from "./components/products/Products.jsx";
+import TopProducts from "./components/TopProducts/TopProducts.jsx";
+import Banner from "./components/Banner/Banner.jsx";
+import Subscribe from "./components/Subscribe/Subscribe.jsx";
+import Testimonials from "./components/Testimonials/Testimonials.jsx";
+import Footer from "./components/Footer/Footer.jsx";
+import Popup from "./components/Popup/Popup.jsx";
 
+import Test from "./components/Test.jsx";
 const App = () => {
+  const [orderPopup, setOrderPopup] = React.useState(false);
+
+  const handleOrderPopup = () => {
+    setOrderPopup(!orderPopup);
+  };
   return (
-    <div className="overflow-x-hidden bg-white2 text-dark">
-      <div className="relative overflow-hidden">
-        <Navbar />
-        <Hero />
-      </div>
-      <HotDesert />
+    <div className="">
+      <Navbar handleOrderPopup={handleOrderPopup} />
+      <Hero  handleOrderPopup={handleOrderPopup} />
+      <Products />
+      <TopProducts  handleOrderPopup={handleOrderPopup} />
       <Banner />
-      <PopulateRecepi />
-      <Testemonial />
+      <Subscribe />
+      <Products />
+      <Testimonials />
       <Footer />
+      <Popup orderPopup={orderPopup} setOrderPopup={setOrderPopup}/>
+      {/* <Test /> */}
     </div>
   );
 };
